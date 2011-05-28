@@ -5,7 +5,6 @@
 #       VERSION:  1.0.0
 # ------------------------------------------------------------------------------
 
-
 if (( ${+commands[compleat]} )); then
   local prefix="${commands[compleat]:h:h}"
   local setup="${prefix}/share/compleat-1.0/compleat_setup"
