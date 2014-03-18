@@ -5,11 +5,19 @@ ZSH_THEME_GIT_PROMPT_CLEAN=""
 
 local return_prompt="%(?:%{$fg_bold[green]%}↑%?%{$reset_color%}:%{$fg_bold[red]%}↑%?%{$reset_color%})"
 local ruby_prompt="%{$fg[red]%}$(rbenv_prompt_info)%{$reset_color%}"
-local host_prompt="%{$fg_bold[magenta]%}%n@%m%{$reset_color%}"
+local host_prompt="%{$fg[cyan]%}%n@%m%{$reset_color%}"
 local time_prompt="%{$fg[blue]%}%D{%I:%M:%S}%{$reset_color%}"
-local pwd_prompt="%{$fg[white]%}%~%{$reset_color%}"
-local prompt_prefix="%{$fg[blue]%}$%{$fg_bold[blue]%}%{$reset_color%}"
+local pwd_prompt="%{$fg[yellow]%}%~%{$reset_color%}"
+local prompt_prefix="%{$fg[blue]%}$%{$reset_color%}"
 local heroku_prompt="${HEROKU_CLOUD}"
+
+function heroku_prompt() {
+  if [ "$cloud" = "prod" ]; then
+      echo "%{$fg_bold[magenta]%}☁${HEROKU_CLOUD}%{$reset_color%}"
+  else
+      echo "%{$fg_bold[blue]%}☁${HEROKU_CLOUD}%{$reset_color%}"
+  fi
+}
 
 function my_git_prompt_info() {
   local git_prompt_info="$(git_prompt_info)"
@@ -20,5 +28,5 @@ function my_git_prompt_info() {
   fi
 }
 
-PROMPT=$'[${return_prompt}] [${host_prompt}] [${time_prompt}] [${pwd_prompt}]$(my_git_prompt_info)[${ruby_prompt}] [${heroku_prompt}]\
+PROMPT=$'[${return_prompt}] [${host_prompt}] [${time_prompt}] [${pwd_prompt}]$(my_git_prompt_info)[${ruby_prompt}] [$(heroku_prompt)]\
 ${prompt_prefix} '
