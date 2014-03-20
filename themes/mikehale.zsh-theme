@@ -4,7 +4,6 @@ ZSH_THEME_GIT_PROMPT_DIRTY=" %{$fg[red]%}*%{$fg[green]%}"
 ZSH_THEME_GIT_PROMPT_CLEAN=""
 
 local return_prompt="%(?:%{$fg_bold[green]%}↑%?%{$reset_color%}:%{$fg_bold[red]%}↑%?%{$reset_color%})"
-local ruby_prompt="%{$fg[red]%}$(rbenv_prompt_info)%{$reset_color%}"
 local host_prompt="%{$fg[cyan]%}%n@%m%{$reset_color%}"
 local time_prompt="%{$fg[blue]%}%D{%I:%M:%S}%{$reset_color%}"
 local pwd_prompt="%{$fg[yellow]%}%~%{$reset_color%}"
@@ -28,5 +27,9 @@ function my_git_prompt_info() {
   fi
 }
 
-PROMPT=$'[${return_prompt}] [${host_prompt}] [${time_prompt}] [${pwd_prompt}]$(my_git_prompt_info)[${ruby_prompt}] [$(heroku_prompt)]\
+function ruby_prompt() {
+  echo "%{$fg[red]%}$(rbenv_prompt_info)%{$reset_color%}"
+}
+
+PROMPT=$'[${return_prompt}] [${host_prompt}] [${time_prompt}] [${pwd_prompt}]$(my_git_prompt_info)[$(ruby_prompt)] [$(heroku_prompt)]\
 ${prompt_prefix} '
