@@ -3,12 +3,12 @@ ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%}]"
 ZSH_THEME_GIT_PROMPT_DIRTY=" %{$fg[red]%}*%{$fg[green]%}"
 ZSH_THEME_GIT_PROMPT_CLEAN=""
 
-local return_prompt="%(?:%{$fg_bold[green]%}↑%?%{$reset_color%}:%{$fg_bold[red]%}↑%?%{$reset_color%})"
+local return_char="↪"
+local return_prompt="%(?:%{$fg_bold[green]%}${return_char}%?%{$reset_color%}:%{$fg_bold[red]%}${return_char}%?%{$reset_color%})"
 local host_prompt="%{$fg[cyan]%}%n@%m%{$reset_color%}"
 local time_prompt="%{$fg[blue]%}%D{%I:%M:%S}%{$reset_color%}"
 local pwd_prompt="%{$fg[yellow]%}%~%{$reset_color%}"
 local prompt_prefix="%{$fg[blue]%}$%{$reset_color%}"
-local heroku_prompt="${HEROKU_CLOUD}"
 
 function heroku_prompt() {
   if [ "$cloud" = "prod" ]; then
