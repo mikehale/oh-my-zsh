@@ -14,7 +14,7 @@ local prompt_prefix="%{$fg[blue]%}$%{$reset_color%}"
 
 function heroku_prompt() {
   if [ "$cloud" = "prod" ]; then
-      echo "%{$fg_bold[magenta]%}☁${HEROKU_CLOUD}%{$reset_color%}"
+      echo "%{$FG[057]%}☁${HEROKU_CLOUD}%{$reset_color%}"
   else
       echo "%{$fg_bold[blue]%}☁${HEROKU_CLOUD}%{$reset_color%}"
   fi
