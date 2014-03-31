@@ -15,6 +15,7 @@ if (( ${+terminfo[smkx]} )) && (( ${+terminfo[rmkx]} )); then
   zle -N zle-line-finish
 fi
 
+if [ -z "$INSIDE_EMACS" ]; then
 bindkey -e                                          # Use emacs key bindings
 
 bindkey '\ew' kill-region                           # [Esc-w] - Kill from the cursor to the mark
@@ -62,3 +63,4 @@ bindkey '\C-x\C-e' edit-command-line
 ## Fix weird sequence that rxvt produces
 #bindkey -s '^[[Z' '\t'
 #
+fi
